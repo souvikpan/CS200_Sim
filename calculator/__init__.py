@@ -7,6 +7,17 @@ app = Flask(__name__)
 def home():
     return render_template("InputOutput.html")        
 
+@app.route("/bitand", methods=["POST"])
+def BITAND(): 
+    jsonStr = request.get_json()
+    jsonObj = json.loads(jsonStr)
+    
+    a=int(jsonObj['N1'])
+    b=int(jsonObj['N2'])
+    bitand=a&b
+    response = "bitand = " + str(bitand)
+    return response
+    
 @app.route("/add", methods=["POST"])
 def ADD(): 
     jsonStr = request.get_json()
@@ -17,7 +28,6 @@ def ADD():
     sum=a+b
     response = "sum = " + str(sum)
     return response
-    
 @app.route("/sub", methods=["POST"])
 def SUB(): 
     jsonStr = request.get_json()
